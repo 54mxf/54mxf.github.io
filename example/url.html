@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <title>URL示例</title>
+    <style>
+      body {
+        padding: 0px 20px;
+      }
+      p {
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>参数a：<span id="a"></span></p>
+    <p>参数b：<span id="b"></span></p>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+    <a name="1"></a>
+    <p>锚点1</p>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+    <a name="2"></a>
+    <p>锚点2</p>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+    <script>
+      const search = location.search;
+      if (search) {
+        const params = location.search.substr(1).split("&");
+        if (params.length > 0) {
+          let paramObj = {};
+          for (let i = 0; i < params.length; i++) {
+            const param = params[i];
+            if (param) {
+              const pair = param.split("=");
+              paramObj[pair[0]] = pair[1];
+            }
+          }
+          if (paramObj.a) {
+            document.getElementById("a").innerText = paramObj.a;
+          }
+          if (paramObj.b) {
+            document.getElementById("b").innerText = paramObj.b;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
