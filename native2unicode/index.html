@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <title>字符转Unicode</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>字符转 Unicode</h1>
+      <form>
+        <div class="form-group">
+          <label for="chars">请输入字符：</label>
+          <textarea class="form-control" id="chars" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            id="unicode"
+            rows="3"
+            readonly
+          ></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="chars2unicode()">
+          转换
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="copyUnicode()">
+          复制结果
+        </button>
+      </form>
+    </div>
+    <script src="jquery.slim.min.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+    <script>
+      function chars2unicode() {
+        const chars = $("#chars").val();
+        if (!chars) return;
+        $("#unicode").val("");
+        for (var i = 0; i < chars.length; i++) {
+          $("#unicode").val(
+            $("#unicode").val() + "&#" + chars.charCodeAt(i) + ";"
+          );
+        }
+      }
+      function copyUnicode() {
+        if (!$("#unicode").val()) return;
+        $("#unicode").select();
+        document.execCommand("copy");
+        alert("复制成功");
+      }
+    </script>
+  </body>
+</html>
